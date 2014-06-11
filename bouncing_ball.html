@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        /*
+            css tricks .com
+            w3schools - tags
+            w3 org - read specs
+        */
+        #ball{
+            border-radius: 40px;
+            height: 80px;
+            width: 80px;
+            background-color: red;
+            position: absolute;
+            top: 100px;
+        }
+        #floor{
+            position: absolute;
+            background-color: darkred;
+            top: 280px;
+            width: 100%;
+            height: 10px;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function (){
+            // console.log('Hello World!');
+            var ball = document.getElementById('ball');
+            var upwards = false;
+            var height = 10;
+            ball.style.top = height + 'px';
+
+            var bottom = 200;
+            var top = 10;
+
+            var intervalid = setInterval(function (){
+
+                // check if the ball is going downwards
+                // if going downwards - check for bottomn
+                // change direction
+                // change the height to which it goes up
+
+                if (upwards) {
+                    height--;
+                    if (height < top) {
+                        upwards = false;
+                    } else {
+                        ball.style.top = height + 'px';
+                    }
+
+                } else {
+                    height++;
+                    if (height > bottom) {
+                        upwards = true;
+                        top = top + 20;
+                        if (top > bottom) {
+                            clearInterval(intervalid);
+                        }
+                    } else {
+                        ball.style.top = height + 'px';
+                    }
+                }
+
+
+            }, 6)
+
+        });
+    </script>
+</head>
+<body>
+
+<div id="ball"></div>
+<div id="floor"></div>
+</body>
+</html>
